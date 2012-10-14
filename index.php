@@ -28,7 +28,15 @@
             <div class="hero-unit">
                 <h1>beatstre.am Live Streaming</h1>
                 <h2>Live Mixes by Steven Richards and Johan Michalove</h2><br>
-                <h2>No one currently mixing, check back later!</h2>
+<?php
+$url = file_get_contents("http://beatstre.am:8000/status.xsl");
+if (preg_match("/Stream Title/i", $url)) {
+    echo "<audio src=\"http://beatstre.am:8000/stream.ogg\" controls=\"controls\" autoplay=\"autoplay\"></audio>";
+    echo "<h2>stream is up!</h2>";
+} else {
+    echo "<h2>No one currently mixing, check back later!</h2>";
+}
+?>
             </div>
             <h3 class="match-unit"><a href="mailto:steven@beatstre.am">Email Steven</a> or <a href="mailto:johan@beatstre.am">Email Johan</a></h3>
             <hr/>
